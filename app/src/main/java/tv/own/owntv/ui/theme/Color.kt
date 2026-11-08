@@ -20,13 +20,13 @@ import tv.own.owntv.core.theme.OwnTVPalette
 val AccentCyan = Color(OwnTVPalette.AccentCyan)
 
 // ---------------- DARK (M3 dark over near-black #040e0b) ----------------
-val DarkBackground = Color(OwnTVPalette.DarkBackground) // Option A — nav + inter-panel gap surface
-val DarkSurface = Color(OwnTVPalette.DarkSurface)
-val DarkSurfaceContainerLowest = Color(OwnTVPalette.DarkSurfaceContainerLowest)
-val DarkSurfaceContainerLow = Color(OwnTVPalette.DarkSurfaceContainerLow)
-val DarkSurfaceContainer = Color(OwnTVPalette.DarkSurfaceContainer)
-val DarkSurfaceContainerHigh = Color(OwnTVPalette.DarkSurfaceContainerHigh)
-val DarkSurfaceContainerHighest = Color(OwnTVPalette.DarkSurfaceContainerHighest)
+val DarkBackground = Color(0xFF090D16) // Option A — nav + inter-panel gap surface
+val DarkSurface = Color(0xFF101522)
+val DarkSurfaceContainerLowest = Color(0xFF0C111B)
+val DarkSurfaceContainerLow = Color(0xFF121826)
+val DarkSurfaceContainer = Color(0xFF171D2D)
+val DarkSurfaceContainerHigh = Color(0xFF20263A)
+val DarkSurfaceContainerHighest = Color(0xFF2B3045)
 val DarkOnSurface = Color(OwnTVPalette.DarkOnSurface)
 val DarkOnSurfaceVariant = Color(OwnTVPalette.DarkOnSurfaceVariant)
 val DarkOutline = Color(OwnTVPalette.DarkOutline)
