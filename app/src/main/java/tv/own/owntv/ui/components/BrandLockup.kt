@@ -115,23 +115,10 @@ fun BrandLockup(
     markSize: Int = 36,
     stacked: Boolean = false,
 ) {
-    val icon = rememberAppliedIcon()
-    val parts = @Composable {
-        BrandMark(icon, markSize.dp)
-        // On a light theme "own" takes the text colour; the cream is for dark surfaces.
-        Wordmark((markSize * 2.75f).dp, own = if (tv.own.owntv.ui.theme.LocalStagePalette.current.isLight) tv.own.owntv.ui.theme.StageColors.Text else WordmarkCream)
-    }
-    if (stacked) {
-        Column(
-            modifier = modifier,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy((markSize * 0.2f).dp),
-        ) { parts() }
-    } else {
-        Row(
-            modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy((markSize * 0.23f).dp),
-        ) { parts() }
-    }
+    // NVA is a single horizontal wordmark: do not duplicate it as icon + text.
+    Image(
+        painter = painterResource(R.drawable.nva_mark),
+        contentDescription = "NVA",
+        modifier = modifier.width((markSize * 3.0f).dp).height((markSize * 1.5f).dp),
+    )
 }
