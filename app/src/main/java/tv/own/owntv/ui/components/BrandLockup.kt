@@ -1,5 +1,6 @@
 package tv.own.owntv.ui.components
 
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -118,7 +119,7 @@ fun BrandLockup(
     // NVA is a single horizontal wordmark: do not duplicate it as icon + text.
     Image(
         painter = painterResource(R.drawable.nva_mark),
-        contentDescription = "NVA",
+        contentDescription = stringResource(R.string.app_name),
         modifier = modifier.width((markSize * 3.0f).dp).height((markSize * 1.5f).dp),
     )
 }
