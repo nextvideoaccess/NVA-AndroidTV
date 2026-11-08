@@ -57,23 +57,12 @@ private fun accentTriangle(): Color? {
  */
 @Composable
 fun BrandMark(icon: AppIcon, size: Dp, modifier: Modifier = Modifier, followAccent: Boolean = true) {
-    val small = size <= 32.dp
-    val accent = accentTriangle().takeIf { followAccent }
-    if (icon == AppIcon.PIXEL && !small) {
-        PixelMark(modifier.size(size), triangle = accent ?: Color(icon.accent))
-        return
-    }
-    Box(modifier.size(size)) {
-        Image(painterResource(if (small) icon.markSmall else icon.mark), contentDescription = null, modifier = Modifier.fillMaxSize())
-        if (accent != null && icon.isCard(small)) {
-            Image(
-                painterResource(if (small) R.drawable.owntv_mark_play_small else R.drawable.owntv_mark_play),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                colorFilter = ColorFilter.tint(accent),
-            )
-        }
-    }
+    // NVA identity is intentionally stable across legacy OwnTV icon presets.
+    Image(
+        painter = painterResource(R.drawable.nva_mark),
+        contentDescription = null,
+        modifier = modifier.size(size),
+    )
 }
 
 /**
@@ -106,10 +95,11 @@ private val PixelPower = Color(CorePixelMark.POWER)
  */
 @Composable
 fun Wordmark(width: Dp, modifier: Modifier = Modifier, tv: Color = stageAccent.accent, own: Color = WordmarkCream) {
-    Box(modifier.width(width).height(width * 182f / 988f)) {
-        Image(painterResource(R.drawable.owntv_wordmark_own), null, Modifier.fillMaxSize(), colorFilter = ColorFilter.tint(own))
-        Image(painterResource(R.drawable.owntv_wordmark_tv), null, Modifier.fillMaxSize(), colorFilter = ColorFilter.tint(tv))
-    }
+    Image(
+        painter = painterResource(R.drawable.nva_mark),
+        contentDescription = null,
+        modifier = modifier.width(width).height(width * 0.5f),
+    )
 }
 
 val WordmarkCream = Color(0xFFFFF6EE)
