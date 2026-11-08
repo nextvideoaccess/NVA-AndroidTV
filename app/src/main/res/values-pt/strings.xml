@@ -3,4 +3,10 @@
     <string name="content_search_channels">Pesquisar canais…</string>
     <string name="content_search_movies">Pesquisar filmes…</string>
     <string name="content_search_series">Pesquisar séries…</string>
+    <string name="setup_welcome_title">Boas-vindas à NVA</string>
+    <string name="setup_welcome_sub">Seu aplicativo de TV. Escolha um idioma para começar — você poderá alterá-lo depois em Configurações.</string>
+    <string name="setup_set_up_owntv">Configurar a NVA</string>
+    <string name="settings_app_icon">Identidade NVA</string>
+    <string name="settings_app_icon_summary">Logomarca oficial NVA utilizada na tela inicial da TV.</string>
+    <string name="app_icon_restart_title">Reiniciar a NVA?</string>
 </resources>
