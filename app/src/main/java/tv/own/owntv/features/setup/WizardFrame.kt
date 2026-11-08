@@ -77,7 +77,7 @@ internal fun WizardFrame(
         // Official NVA vector wordmark replaces the inherited TV/play tile.
         androidx.compose.foundation.Image(
             painter = androidx.compose.ui.res.painterResource(R.drawable.nva_mark),
-            contentDescription = "NVA",
+            contentDescription = stringResource(R.string.app_name),
             modifier = Modifier.padding(start = 64.mpx, top = 45.mpx)
                 .width(130.mpx).height(65.mpx),
         )
