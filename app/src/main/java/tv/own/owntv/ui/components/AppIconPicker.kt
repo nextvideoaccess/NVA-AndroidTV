@@ -60,7 +60,7 @@ fun AppIconPicker(
         }
         Spacer(Modifier.height(12.dp))
         Text(
-            "NVA",
+            stringResource(R.string.app_name),
             style = tv.own.owntv.ui.theme.stageText(19, 500),
             color = tv.own.owntv.ui.theme.StageColors.Text,
             textAlign = TextAlign.Center,
