@@ -8,7 +8,7 @@ name: Android CI
 #                unchanged); they only get the test/lint verdict.
 on:
   push:
-    branches: [ main ]
+    branches: [ main, 'nva/identidade-fase-1' ]
     tags: [ "v*" ]
   pull_request:
     branches: [ main ]
@@ -261,7 +261,7 @@ jobs:
           if [ "$IS_TAG" = "true" ]; then
             OUT="OwnTV-v${{ steps.ver.outputs.name }}.apk"
           else
-            OUT="OwnTV-dev-${GITHUB_SHA::7}.apk"
+            OUT="NVA-AndroidTV-teste-${GITHUB_SHA::7}.apk"
           fi
           cp "$ARM_SRC" "dist/$OUT"
           echo "APK_OUT=$OUT" >> "$GITHUB_ENV"
