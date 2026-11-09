@@ -45,33 +45,22 @@ fun AppIconPicker(
     modifier: Modifier = Modifier,
     firstFocus: FocusRequester? = null,
 ) {
-    var focusedIcon by remember { mutableStateOf<AppIcon?>(null) }
+    // NVA has one official brand icon. Keep the selected legacy launcher variant
+    // internally for compatibility, but do not offer visually identical choices.
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        // Two rows of five (the 8 colours, Signal, Pixel): ten tiles in one row are wider than the panel.
-        AppIcon.entries.chunked(5).forEachIndexed { row, icons ->
-            if (row > 0) Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                icons.forEach { icon ->
-                    tv.own.owntv.ui.stage.StageSurface(
-                        onClick = { onPick(icon) },
-                        radius = 20.dp,
-                        modifier = Modifier
-                            .size(84.dp)
-                            .then(if (icon == selected && firstFocus != null) Modifier.focusRequester(firstFocus) else Modifier),
-                        focusStyle = tv.own.owntv.ui.stage.StageFocus.FX,
-                        // The chosen icon keeps an accent ring while focus is elsewhere.
-                        idle = if (icon == selected) Modifier.border(3.mpx, tv.own.owntv.ui.theme.stageAccent.accent, RoundedCornerShape(20.dp)) else Modifier,
-                        contentAlignment = Alignment.Center,
-                    ) { focused ->
-                        LaunchedEffect(focused) { if (focused) focusedIcon = icon }
-                        BrandMark(icon, 56.dp, followAccent = false)
-                    }
-                }
-            }
+        tv.own.owntv.ui.stage.StageSurface(
+            onClick = { onPick(selected) },
+            radius = 20.dp,
+            modifier = Modifier.size(150.dp)
+                .then(if (firstFocus != null) Modifier.focusRequester(firstFocus) else Modifier),
+            focusStyle = tv.own.owntv.ui.stage.StageFocus.FX,
+            contentAlignment = Alignment.Center,
+        ) { _ ->
+            BrandMark(selected, 140.dp, followAccent = false)
         }
-        Spacer(Modifier.height(8.dp))
+        Spacer(Modifier.height(12.dp))
         Text(
-            stringResource((focusedIcon ?: selected).label),
+            stringResource(R.string.app_name),
             style = tv.own.owntv.ui.theme.stageText(19, 500),
             color = tv.own.owntv.ui.theme.StageColors.Text,
             textAlign = TextAlign.Center,

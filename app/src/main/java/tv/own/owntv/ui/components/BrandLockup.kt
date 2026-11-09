@@ -1,5 +1,6 @@
 package tv.own.owntv.ui.components
 
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -57,23 +58,12 @@ private fun accentTriangle(): Color? {
  */
 @Composable
 fun BrandMark(icon: AppIcon, size: Dp, modifier: Modifier = Modifier, followAccent: Boolean = true) {
-    val small = size <= 32.dp
-    val accent = accentTriangle().takeIf { followAccent }
-    if (icon == AppIcon.PIXEL && !small) {
-        PixelMark(modifier.size(size), triangle = accent ?: Color(icon.accent))
-        return
-    }
-    Box(modifier.size(size)) {
-        Image(painterResource(if (small) icon.markSmall else icon.mark), contentDescription = null, modifier = Modifier.fillMaxSize())
-        if (accent != null && icon.isCard(small)) {
-            Image(
-                painterResource(if (small) R.drawable.owntv_mark_play_small else R.drawable.owntv_mark_play),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                colorFilter = ColorFilter.tint(accent),
-            )
-        }
-    }
+    // NVA identity is intentionally stable across legacy OwnTV icon presets.
+    Image(
+        painter = painterResource(R.drawable.nva_mark),
+        contentDescription = null,
+        modifier = modifier.size(size),
+    )
 }
 
 /**
@@ -106,10 +96,11 @@ private val PixelPower = Color(CorePixelMark.POWER)
  */
 @Composable
 fun Wordmark(width: Dp, modifier: Modifier = Modifier, tv: Color = stageAccent.accent, own: Color = WordmarkCream) {
-    Box(modifier.width(width).height(width * 182f / 988f)) {
-        Image(painterResource(R.drawable.owntv_wordmark_own), null, Modifier.fillMaxSize(), colorFilter = ColorFilter.tint(own))
-        Image(painterResource(R.drawable.owntv_wordmark_tv), null, Modifier.fillMaxSize(), colorFilter = ColorFilter.tint(tv))
-    }
+    Image(
+        painter = painterResource(R.drawable.nva_mark),
+        contentDescription = null,
+        modifier = modifier.width(width).height(width * 0.5f),
+    )
 }
 
 val WordmarkCream = Color(0xFFFFF6EE)
@@ -125,23 +116,10 @@ fun BrandLockup(
     markSize: Int = 36,
     stacked: Boolean = false,
 ) {
-    val icon = rememberAppliedIcon()
-    val parts = @Composable {
-        BrandMark(icon, markSize.dp)
-        // On a light theme "own" takes the text colour; the cream is for dark surfaces.
-        Wordmark((markSize * 2.75f).dp, own = if (tv.own.owntv.ui.theme.LocalStagePalette.current.isLight) tv.own.owntv.ui.theme.StageColors.Text else WordmarkCream)
-    }
-    if (stacked) {
-        Column(
-            modifier = modifier,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy((markSize * 0.2f).dp),
-        ) { parts() }
-    } else {
-        Row(
-            modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy((markSize * 0.23f).dp),
-        ) { parts() }
-    }
+    // NVA is a single horizontal wordmark: do not duplicate it as icon + text.
+    Image(
+        painter = painterResource(R.drawable.nva_mark),
+        contentDescription = stringResource(R.string.app_name),
+        modifier = modifier.width((markSize * 3.0f).dp).height((markSize * 1.5f).dp),
+    )
 }

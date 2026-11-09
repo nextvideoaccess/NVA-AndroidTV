@@ -47,7 +47,7 @@ dependencyResolutionManagement {
 // Set it in ~/.gradle/gradle.properties, never here:  owntv.corePath=E:/MEGA/CODE/AI/OwnTV_Core
 providers.gradleProperty("owntv.corePath").orNull?.takeIf { it.isNotBlank() }?.let { includeBuild(it) }
 
-rootProject.name = "OwnTV"
+rootProject.name = "NVA-AndroidTV"
 include(":app")
 // Baseline-profile generator. Test-only module: it ships nothing to users, it records
 // the cold-start journey on a device and writes the profile :app packages.

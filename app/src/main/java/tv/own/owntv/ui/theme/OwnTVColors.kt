@@ -114,7 +114,8 @@ fun ownTvColors(
     customAccent: String = "",
     focusHighlight: String = "",
 ): OwnTVColors {
-    val roles = parseAccentHex(customAccent)?.let { rolesFrom(it, isDark) } ?: AccentRoles(
+    val nvaAccent = customAccent.ifBlank { "#A51FC4" }
+    val roles = parseAccentHex(nvaAccent)?.let { rolesFrom(it, isDark) } ?: AccentRoles(
         primary = accent.primary(isDark),
         onPrimary = accent.onPrimary(isDark),
         primaryContainer = accent.primaryContainer(isDark),
@@ -122,7 +123,7 @@ fun ownTvColors(
     )
     val primary = roles.primary
     // Always the dark-surface tone of the same accent: the player HUD is dark chrome in every theme.
-    val onVideoRoles = parseAccentHex(customAccent)?.let { rolesFrom(it, true) } ?: AccentRoles(
+    val onVideoRoles = parseAccentHex(nvaAccent)?.let { rolesFrom(it, true) } ?: AccentRoles(
         primary = accent.primary(true),
         onPrimary = accent.onPrimary(true),
         primaryContainer = accent.primaryContainer(true),
